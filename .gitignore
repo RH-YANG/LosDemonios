@@ -1,5 +1,12 @@
+# 데이터/보안 관련
 .env
+**/data_directory
+**.dump
+
+# 개발설정관련
 **/.vscode
-**/*.pth
+
+# 컴파일
 **/*.pyc
 **/__pycache__
+
