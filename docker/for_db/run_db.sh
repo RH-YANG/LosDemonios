@@ -12,7 +12,7 @@ if [ -d "$host_data_dir" ]; then
     is_continuity=true
 fi
 
-echo "이전 데이터를 이어가나요? : $is_continuity"
+echo " ---- 이전 데이터를 이어가나요? : $is_continuity"
 
 
 # 2. 컨테이너 생성
@@ -39,19 +39,15 @@ if [ "$is_continuity" = false ]; then
 fi
 
 
-# 4. (디버깅중) 버전 복원 지정
-read -p " 버전 복원 안 함(0), 스키마만 복원(1), 데이터 복원(2)를 선택하세요 : " choice
+# 4. 버전 복원 지정
+read -p " ---- 버전 복원 안 함(0), 스키마만 복원(1), 데이터 복원(2)를 선택하세요 : " choice
 
 if [ "$choice" -ge 1  ]; then
-    echo "$CUR_SCHEMA 버전으로 스키마 복원중 ..."
-    docker exec -it $DB_CONTAINER psql -U $DB_USER -d $DB_NAME < /schema/$CUR_SCHEMA
+    echo " ---- $CUR_SCHEMA 버전으로 스키마 복원중 ..."
+    docker exec -it $DB_CONTAINER psql -U $DB_USER -d $DB_NAME -f schema/$CUR_SCHEMA
 fi
 
 if [ "$choice" -ge 2  ]; then
-    echo "$CUR_DUMP 버전으로 데이터 복원중 ..."
-    docker exec -it $DB_CONTAINER pg_restore -U $DB_USER -d $DB_NAME < /backup/$CUR_DUMP
+    echo " ---- $CUR_DUMP 버전으로 데이터 복원중 ..."
+    docker exec -it $DB_CONTAINER pg_restore -U $DB_USER -d $DB_NAME backup/$CUR_DUMP
 fi
-
-# 버그로 인해 수동으로 복원을 진행한다
-echo "수동으로 복원을 진행하세요"
-docker exec -it $DB_CONTAINER bin/bash
