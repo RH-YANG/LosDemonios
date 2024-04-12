@@ -17,11 +17,11 @@ echo " ---- 이전 데이터를 이어가나요? : $is_continuity"
 
 # 2. 컨테이너 생성
 docker run \
-	--name $DB_CONTAINER \
+    --name $DB_CONTAINER \
     --hostname $DB_CONTAINER \
     -e POSTGRES_PASSWORD=$POSTGRES_PWD \
     -e TZ=Asia/Seoul \
-	-p $DB_PORT:5432 \
+    -p $DB_PORT:5432 \
     -v $host_data_dir:/var/lib/postgresql/data \
     -v $PROJECT_PATH/db/backup:/backup \
     -v $PROJECT_PATH/db/schema:/schema \
