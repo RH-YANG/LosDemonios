@@ -9,5 +9,7 @@ class Golem(BaseModel):
     pwd: str = ""
     nickname: str = ""
     profile_img: str = ""
+    gender: str = ""
+    token: str = ""
     join_at: Optional[datetime] = None
     last_at: Optional[datetime] = None
