@@ -13,12 +13,14 @@ def check_duplicate(conn, cur, item, value):
     return is_available
 
 
+
 def encrypt_pwd(pwd):
     encoded_pwd = pwd.encode("utf-8")
     salt = bcrypt.gensalt()
     encrypt_pwd = bcrypt.hashpw(encoded_pwd, salt).decode("utf-8")   
 
     return encrypt_pwd
+
 
 
 @db.connection_manager
@@ -30,18 +32,16 @@ def insert(conn, cur, golem: Golem):
 
     if not (result or gol_seq):
         db.fail_routine(conn)
-
     conn.commit()
+    
     return gol_seq
 
 
 
-# @db.connection_manager
-# def update_pwd(conn, cur, golem: Golem):
-#     golem.pwd = encrypt_pwd(golem.pwd)
-
-#     result = golem_dao.update_pwd(cur, golem)
-#     if not result:
-#         db.fail_routine(conn)
+@db.connection_manager
+def update(conn, cur, golem: Golem):
+    result = golem_dao.update(cur, golem)
+    if not result:
+        db.fail_routine(conn)
     
-#     conn.commit()    
+    conn.commit()    
