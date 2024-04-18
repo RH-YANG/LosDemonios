@@ -7,8 +7,7 @@ from fastapi import status, HTTPException
 
 
 
-dotenv_path = "../.env"
-load_dotenv(dotenv_path)
+load_dotenv()
 
 host = os.getenv("SERVER_ADDR")
 port = os.getenv("DB_PORT")

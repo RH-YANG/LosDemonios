@@ -3,8 +3,7 @@ if __name__ == '__main__':
     from dotenv import load_dotenv
     import os
 
-    dotenv_path = "../.env"
-    load_dotenv(dotenv_path)
+    load_dotenv()
 
     port = int(os.getenv("API_PORT"))
     host = os.getenv("SERVER_ADDR")

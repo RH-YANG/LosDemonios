@@ -13,6 +13,7 @@ from model.schemas.domain_schema import Golem
 
 
 load_dotenv()
+
 key = os.getenv("JWT_SECRET_KEY")
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="golem/login")
 
