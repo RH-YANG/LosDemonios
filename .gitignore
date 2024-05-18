@@ -10,3 +10,6 @@
 **/*.pyc
 **/__pycache__
 
+# 프론트
+node_modules/
+build/
