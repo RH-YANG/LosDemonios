@@ -1,0 +1,11 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    background-color: #0004b2;
+    max-width: calc(100vh * (9 / 16));
+    aspect-ratio: 9 / 16;
+    margin: 0 auto;
+}
