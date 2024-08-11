@@ -10,7 +10,7 @@ const Home = () => {
     const navigate = useNavigate();
 
     const handleClick = () => {
-        navigate('/about');
+        navigate('/gate');
     };
 
 
@@ -20,6 +20,7 @@ const Home = () => {
                 <img src={logo} alt="los Demonios" className={styles.logo} />
                 <p className={styles.quote}>"빛에는 반드시 그림자가 뒤따르는 법"</p>
                 <p className={styles.text}>
+                    <br />
                     19세기 말, 미국 서부에 새로운 도시가 세워졌다.
                     <br />
                     태양 아래 빛나는 야자수와 무한한 축복의 땅,
@@ -29,7 +30,9 @@ const Home = () => {
                     <br />
                     그러나 이 도시가 건설될 때,
                     <br />
-                    그 이면에는 아무도 알지 못하는 또 다른 세계가 생겨나고 있었다.
+                    그 이면에는 아무도 알지 못하는
+                    <br />
+                    또 다른 세계가 생겨나고 있었다.
                     <br />
                     그곳은 악령들의 땅,
                     <br />
