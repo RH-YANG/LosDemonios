@@ -1,0 +1,48 @@
+@import '../global.scss';
+
+.loginForm {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+}
+
+.input {
+    margin-bottom: 15px;
+    font-size: 1.2rem;
+    padding: 10px;
+    border: none;
+    border-radius: 3px;
+    width: 50%;
+}
+
+.input_label {
+    font-family: 'LD-ExtraLight';
+    font-size: 1.8rem;
+    color: #ffffff;
+}
+
+.checkboxContainer {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.loginButton {
+    padding: 10px;
+    background-color: #3336c1;
+    width: 50%;
+    font-family: 'LD-Medium';
+    font-size: 1.5rem;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.findPw {
+    margin-top: 10px;
+    text-align: right;
+    color: white;
+    cursor: pointer;
+    font-size: 0.9rem;
+}
