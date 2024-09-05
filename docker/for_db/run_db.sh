@@ -12,10 +12,11 @@ if [ -d "$host_data_dir" ]; then
     is_continuity=true
 fi
 
-echo " ---- 이전 데이터를 이어가나요? : $is_continuity"
+echo " ---- 이전 데이터를 이어가는지 여부 : $is_continuity"
 
 
-# 2. 컨테이너 생성
+# 2. 컨테이너 생성 (이미지 없을 시 자동 설치)
+
 docker run \
     --name $DB_CONTAINER \
     --hostname $DB_CONTAINER \
@@ -44,10 +45,13 @@ read -p " ---- 버전 복원 안 함(0), 스키마만 복원(1), 데이터 복�
 
 if [ "$choice" -ge 1  ]; then
     echo " ---- $CUR_SCHEMA 버전으로 스키마 복원중 ..."
-    docker exec -it $DB_CONTAINER psql -U $DB_USER -d $DB_NAME -f schema/$CUR_SCHEMA
+    docker exec -it $DB_CONTAINER psql -U $DB_USER -d $DB_NAME -f /schema/$CUR_SCHEMA # Namu PC 경로
+    # docker exec -it $DB_CONTAINER psql -U $DB_USER -d $DB_NAME -f schema/$CUR_SCHEMA # RH PC 경로
 fi
 
 if [ "$choice" -ge 2  ]; then
     echo " ---- $CUR_DUMP 버전으로 데이터 복원중 ..."
-    docker exec -it $DB_CONTAINER pg_restore -U $DB_USER -d $DB_NAME backup/$CUR_DUMP
+    docker exec -it $DB_CONTAINER pg_restore -U $DB_USER -d $DB_NAME /backup/$CUR_DUMP # Namu PC 경로
+    # docker exec -it $DB_CONTAINER pg_restore -U $DB_USER -d $DB_NAME backup/$CUR_DUMP # RH PC 경로
+
 fi
