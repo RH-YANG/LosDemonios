@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './Navi.module.scss';
-import naviImage from '../../assets/image/navi_basic.png';
+import naviImage from '../../assets/image/navi_basic_upload.png';
 
 const Navi = ({ message }) => {
     return (
