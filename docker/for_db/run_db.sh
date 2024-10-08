@@ -29,7 +29,7 @@ docker run \
     -d \
     postgres 
 
-sleep 10   # PC 성능이 좋으면 시간 줄여도 됨 (서버가 생성될 시간 확보)
+sleep 5   # PC 성능이 좋으면 시간 줄여도 됨 (서버가 생성될 시간 확보)
 
 
 # 3. 새롭게 생성되는 경우 유저와 DB 생성
@@ -45,13 +45,13 @@ read -p " ---- 버전 복원 안 함(0), 스키마만 복원(1), 데이터 복�
 
 if [ "$choice" -ge 1  ]; then
     echo " ---- $CUR_SCHEMA 버전으로 스키마 복원중 ..."
-    docker exec -it $DB_CONTAINER psql -U $DB_USER -d $DB_NAME -f /schema/$CUR_SCHEMA # Namu PC 경로
-    # docker exec -it $DB_CONTAINER psql -U $DB_USER -d $DB_NAME -f schema/$CUR_SCHEMA # RH PC 경로
+    # docker exec -it $DB_CONTAINER psql -U $DB_USER -d $DB_NAME -f /schema/$CUR_SCHEMA # 오류날 경우 아래로 대체
+    docker exec -it $DB_CONTAINER psql -U $DB_USER -d $DB_NAME -f schema/$CUR_SCHEMA # 오류날 경우 위로 대체
 fi
 
 if [ "$choice" -ge 2  ]; then
     echo " ---- $CUR_DUMP 버전으로 데이터 복원중 ..."
-    docker exec -it $DB_CONTAINER pg_restore -U $DB_USER -d $DB_NAME /backup/$CUR_DUMP # Namu PC 경로
-    # docker exec -it $DB_CONTAINER pg_restore -U $DB_USER -d $DB_NAME backup/$CUR_DUMP # RH PC 경로
+    # docker exec -it $DB_CONTAINER pg_restore -U $DB_USER -d $DB_NAME /backup/$CUR_DUMP # 오류날 경우 아래로 대체
+    docker exec -it $DB_CONTAINER pg_restore -U $DB_USER -d $DB_NAME backup/$CUR_DUMP # 오류날 경우 위로 대체
 
 fi
