@@ -48,6 +48,7 @@ CREATE TABLE public.golem (
     pwd character varying NOT NULL,
     nickname character varying NOT NULL,
     profile_img character varying,
+    token character varying,
     join_at timestamp with time zone DEFAULT CURRENT_TIMESTAMP,
     last_at timestamp with time zone
 );
